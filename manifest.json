@@ -1,0 +1,21 @@
+{
+  "name": "Inspección Lidermán",
+  "short_name": "Lidermán",
+  "description": "Aplicación para la inspección en gestión ambiental y SST.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e30613",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

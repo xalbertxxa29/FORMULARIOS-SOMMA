@@ -1,0 +1,164 @@
+/* formulario-locativas.css */
+
+/* — Reset básico — */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* — Contenedor principal — */
+body {
+  background: #f4f4f4;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.4;
+  padding: 10px;
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+/* — Títulos — */
+h1 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.card h2 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+/* — Tarjetas (cards) con grid adaptable — */
+.card {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 16px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 16px;
+}
+
+/* — Grupo de campo — */
+.field-group,
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.field-group label,
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+.field-group input,
+.field-group textarea,
+.form-group input {
+  width: 100%;
+  padding: 6px;
+  font-size: 0.9rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+/* — Textarea conclusiones — */
+#conclusiones {
+  grid-column: 1 / -1;   /* ocupa todo el ancho */
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* — Tabla de verificación con scroll horizontal — */
+.table-wrapper {
+  grid-column: 1 / -1;  /* ocupa todo el ancho de la card */
+  overflow-x: auto;
+}
+.verification-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.verification-table th,
+.verification-table td {
+  border: 1px solid #888;
+  padding: 6px;
+  text-align: center;
+  vertical-align: middle;
+}
+.verification-table th.vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: bold;
+}
+.verification-table td.category {
+  font-weight: bold;
+  background: #e9e9e9;
+}
+.verification-table td textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 4px;
+  font-size: 0.85rem;
+}
+
+/* — Firma (canvas) — */
+.signature-card {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.signature-card canvas {
+  width: 100%;
+  height: 140px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.signature-card button {
+  align-self: flex-end;
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* — Botón enviar — */
+#btnEnviar {
+  display: block;
+  width: 100%;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* — Mensajes overlay y success — */
+#overlay,
+#successMessage {
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* — Media queries para pantallas muy pequeñas — */
+@media (max-width: 480px) {
+  .card {
+    grid-template-columns: 1fr;  /* todo en columna */
+  }
+  #btnEnviar {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}

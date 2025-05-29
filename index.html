@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspección Lidermán</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1>Inspección Lidermán</h1>
+  </header>
+
+  <div id="main" class="content">
+    <button onclick="showPage('inspeccion')">
+      <img src="icono1.png" alt="Icono" class="icon">
+      INSPECCIONES
+    </button>
+    <!-- 🔄 Cambiado para redirigir directamente -->
+    <button onclick="window.location.href='https://xalbertxxa29.github.io/FORMULARIOS-SOMMA/formulario-liderracs.html'">
+      <img src="icono2.png" alt="Icono" class="icon">
+      REPORTES LIDERACS
+    </button>
+  </div>
+
+  <div id="inspeccion" class="content hidden">
+    <button onclick="showPage('sst')">INSPECCIÓN SST</button>
+    <button onclick="showPage('ambiental')">INSPECCIÓN AMBIENTAL</button>
+    <button class="back-button" onclick="showMain()">Regresar</button>
+  </div>
+
+  <div id="sst" class="content hidden">
+    <h1>INSPECCIÓN EN SST</h1>
+    <button onclick="loadIframe('formulario-locativas.html')">
+      Inspección de Instalaciones Locativas
+    </button>
+    <button onclick="loadIframe('formulario.html')">
+      Verificación de Botiquines
+    </button>
+    <button class="back-button" onclick="showPage('inspeccion')">Regresar</button>
+  </div>
+
+  <div id="ambiental" class="content hidden">
+    <h1>INSPECCIÓN EN GESTIÓN AMBIENTAL</h1>
+    <button onclick="loadIframe('formulario-aspectos-ambientales.html')">
+      Inspección de Aspectos Ambientales
+    </button>
+    <button class="back-button" onclick="showPage('inspeccion')">Regresar</button>
+  </div>
+
+  <div id="reportes" class="content hidden">
+    <h1>REPORTES</h1>
+    <div id="embedContainer"></div>
+    <button class="back-button" onclick="showMain()">Regresar</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

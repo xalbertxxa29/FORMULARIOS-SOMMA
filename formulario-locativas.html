@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inspección de Instalaciones Locativas</title>
+  <link rel="stylesheet" href="formulario-locativas.css" />
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage-compat.js"></script>
+  <!-- Tu configuración de Firebase -->
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Inspección de Instalaciones Locativas</h1>
+    <form id="dataForm">
+
+      <!-- DATOS FIJOS -->
+      <div class="card">
+        <h2>Datos Fijos</h2>
+        <div class="field-group">
+          <label for="codigo">Código</label>
+          <input type="text" id="codigo" value="JV-SSM-F-203" readonly>
+        </div>
+        <div class="field-group">
+          <label for="version">Versión</label>
+          <input type="text" id="version" value="01" readonly>
+        </div>
+        <div class="field-group">
+          <label for="fechaDocumento">Fecha documento</label>
+          <input type="text" id="fechaDocumento" value="10/12/2024" readonly>
+        </div>
+      </div>
+
+      <!-- DATOS GENERALES -->
+      <div class="card">
+        <h2>Datos Generales</h2>
+        <div class="field-group">
+          <label for="cliente">CLIENTES / UNIDAD</label>
+          <input type="text" id="cliente" placeholder="Escribe el cliente o unidad">
+        </div>
+        <div class="field-group">
+          <label for="area">ÁREA DE LA INSPECCIÓN</label>
+          <input type="text" id="area" placeholder="Área inspección">
+        </div>
+        <div class="field-group">
+          <label for="responsable_inspeccion">RESPONSABLE DE LA INSPECCIÓN</label>
+          <input type="text" id="responsable_inspeccion" placeholder="Nombre del inspector">
+        </div>
+        <div class="field-group">
+          <label for="cargo_inspector">CARGO DEL INSPECTOR</label>
+          <input type="text" id="cargo_inspector" placeholder="Cargo del inspector">
+        </div>
+        <div class="field-group">
+          <label for="fecha_inspeccion">FECHA DE LA INSPECCIÓN</label>
+          <input type="date" id="fecha_inspeccion">
+        </div>
+      </div>
+
+      <!-- VERIFICACIÓN -->
+      <div class="card">
+        <h2>Verificación</h2>
+        <div class="table-wrapper">
+          <table class="verification-table">
+            <thead>
+              <tr>
+                <th class="vertical">ÍTEMS</th>
+                <th>DESCRIPCIÓN</th>
+                <th>CUMPLE</th>
+                <th>NO CUMPLE</th>
+                <th>NO APLICA</th>
+                <th>OBSERVACIONES</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- PISOS -->
+              <tr>
+                <td class="category" rowspan="3">PISOS</td>
+                <td>Los pisos están limpio, secos y en buen estado</td>
+                <td><input type="radio" name="pisosBuenEstado" value="Cumple"></td>
+                <td><input type="radio" name="pisosBuenEstado" value="NoCumple"></td>
+                <td><input type="radio" name="pisosBuenEstado" value="NoAplica"></td>
+                <td><textarea id="pisosBuenEstadoObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Cuentan con superficies antideslizantes o cintas antideslizantes</td>
+                <td><input type="radio" name="superficiesAntideslizantes" value="Cumple"></td>
+                <td><input type="radio" name="superficiesAntideslizantes" value="NoCumple"></td>
+                <td><input type="radio" name="superficiesAntideslizantes" value="NoAplica"></td>
+                <td><textarea id="superficiesAntideslizantesObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Las superficies o cintas antideslizantes se encuentran en buen estado</td>
+                <td><input type="radio" name="antideslizantesBuenEstado" value="Cumple"></td>
+                <td><input type="radio" name="antideslizantesBuenEstado" value="NoCumple"></td>
+                <td><input type="radio" name="antideslizantesBuenEstado" value="NoAplica"></td>
+                <td><textarea id="antideslizantesBuenEstadoObservaciones" rows="1"></textarea></td>
+              </tr>
+              <!-- PAREDES -->
+              <tr>
+                <td class="category" rowspan="4">PAREDES</td>
+                <td>Las paredes están limpias y en buen estado</td>
+                <td><input type="radio" name="paredesBuenEstado" value="Cumple"></td>
+                <td><input type="radio" name="paredesBuenEstado" value="NoCumple"></td>
+                <td><input type="radio" name="paredesBuenEstado" value="NoAplica"></td>
+                <td><textarea id="paredesBuenEstadoObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Hay marcas de humedad o escurrimiento de agua en las paredes o superficies</td>
+                <td><input type="radio" name="marcasHumedad" value="Cumple"></td>
+                <td><input type="radio" name="marcasHumedad" value="NoCumple"></td>
+                <td><input type="radio" name="marcasHumedad" value="NoAplica"></td>
+                <td><textarea id="marcasHumedadObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>No poseen grietas o partes inestables que presenten riesgo ante sismos</td>
+                <td><input type="radio" name="sinGrietas" value="Cumple"></td>
+                <td><input type="radio" name="sinGrietas" value="NoCumple"></td>
+                <td><input type="radio" name="sinGrietas" value="NoAplica"></td>
+                <td><textarea id="sinGrietasObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Los techos se encuentran en buen estado</td>
+                <td><input type="radio" name="techosBuenEstado" value="Cumple"></td>
+                <td><input type="radio" name="techosBuenEstado" value="NoCumple"></td>
+                <td><input type="radio" name="techosBuenEstado" value="NoAplica"></td>
+                <td><textarea id="techosBuenEstadoObservaciones" rows="1"></textarea></td>
+              </tr>
+              <!-- VENTANAS -->
+              <tr>
+                <td class="category" rowspan="3">VENTANAS</td>
+                <td>Los vidrios se encuentran en buen estado y fijación adecuada</td>
+                <td><input type="radio" name="vidriosBuenEstado" value="Cumple"></td>
+                <td><input type="radio" name="vidriosBuenEstado" value="NoCumple"></td>
+                <td><input type="radio" name="vidriosBuenEstado" value="NoAplica"></td>
+                <td><textarea id="vidriosBuenEstadoObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Las ventanas están limpias sin impedir la entrada de luz natural</td>
+                <td><input type="radio" name="ventanasLimpias" value="Cumple"></td>
+                <td><input type="radio" name="ventanasLimpias" value="NoCumple"></td>
+                <td><input type="radio" name="ventanasLimpias" value="NoAplica"></td>
+                <td><textarea id="ventanasLimpiasObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Poseen protección ante rompimiento</td>
+                <td><input type="radio" name="proteccionRompimiento" value="Cumple"></td>
+                <td><input type="radio" name="proteccionRompimiento" value="NoCumple"></td>
+                <td><input type="radio" name="proteccionRompimiento" value="NoAplica"></td>
+                <td><textarea id="proteccionRompimientoObservaciones" rows="1"></textarea></td>
+              </tr>
+              <!-- PUERTAS -->
+              <tr>
+                <td class="category" rowspan="3">PUERTAS</td>
+                <td>Las puertas se encuentran en buen estado</td>
+                <td><input type="radio" name="puertasBuenEstado" value="Cumple"></td>
+                <td><input type="radio" name="puertasBuenEstado" value="NoCumple"></td>
+                <td><input type="radio" name="puertasBuenEstado" value="NoAplica"></td>
+                <td><textarea id="puertasBuenEstadoObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>No se encuentran obstaculizadas</td>
+                <td><input type="radio" name="noObstaculizadas" value="Cumple"></td>
+                <td><input type="radio" name="noObstaculizadas" value="NoCumple"></td>
+                <td><input type="radio" name="noObstaculizadas" value="NoAplica"></td>
+                <td><textarea id="noObstaculizadasObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Son propicias para la salida en situaciones de emergencia</td>
+                <td><input type="radio" name="propiciasEmergencia" value="Cumple"></td>
+                <td><input type="radio" name="propiciasEmergencia" value="NoCumple"></td>
+                <td><input type="radio" name="propiciasEmergencia" value="NoAplica"></td>
+                <td><textarea id="propiciasEmergenciaObservaciones" rows="1"></textarea></td>
+              </tr>
+              <!-- MOBILIARIO -->
+              <tr>
+                <td class="category" rowspan="4">MOBILIARIO</td>
+                <td>Las sillas son ergonómicas y se encuentran en buen estado</td>
+                <td><input type="radio" name="sillasErgonomicas" value="Cumple"></td>
+                <td><input type="radio" name="sillasErgonomicas" value="NoCumple"></td>
+                <td><input type="radio" name="sillasErgonomicas" value="NoAplica"></td>
+                <td><textarea id="sillasErgonomicasObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Las luminarias se encuentran limpias y en buen estado</td>
+                <td><input type="radio" name="luminariasBuenEstado" value="Cumple"></td>
+                <td><input type="radio" name="luminariasBuenEstado" value="NoCumple"></td>
+                <td><input type="radio" name="luminariasBuenEstado" value="NoAplica"></td>
+                <td><textarea id="luminariasBuenEstadoObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Los mobiliarios se encuentran anclados, en buen estado y limpias</td>
+                <td><input type="radio" name="mobiliariosAnclados" value="Cumple"></td>
+                <td><input type="radio" name="mobiliariosAnclados" value="NoCumple"></td>
+                <td><input type="radio" name="mobiliariosAnclados" value="NoAplica"></td>
+                <td><textarea id="mobiliariosAncladosObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Los equipos de oficina se encuentran limpios y en buen estado</td>
+                <td><input type="radio" name="equiposOficinaLimpios" value="Cumple"></td>
+                <td><input type="radio" name="equiposOficinaLimpios" value="NoCumple"></td>
+                <td><input type="radio" name="equiposOficinaLimpios" value="NoAplica"></td>
+                <td><textarea id="equiposOficinaLimpiosObservaciones" rows="1"></textarea></td>
+              </tr>
+              <!-- GARITA / PROTECTORES -->
+              <tr>
+                <td class="category" rowspan="3">GARITA / PROTECTORES</td>
+                <td>El lugar donde se desarrolla la labor es seguro y cuenta con condiciones que permitan prevenir accidentes o lesiones</td>
+                <td><input type="radio" name="lugarSeguro" value="Cumple"></td>
+                <td><input type="radio" name="lugarSeguro" value="NoCumple"></td>
+                <td><input type="radio" name="lugarSeguro" value="NoAplica"></td>
+                <td><textarea id="lugarSeguroObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Se cuenta con señalización y demarcación de las áreas</td>
+                <td><input type="radio" name="senalizacionDemarcacion" value="Cumple"></td>
+                <td><input type="radio" name="senalizacionDemarcacion" value="NoCumple"></td>
+                <td><input type="radio" name="senalizacionDemarcacion" value="NoAplica"></td>
+                <td><textarea id="senalizacionDemarcacionObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Las áreas se encuentran limpias y libres de escombros o material de residuo</td>
+                <td><input type="radio" name="areasLimpias" value="Cumple"></td>
+                <td><input type="radio" name="areasLimpias" value="NoCumple"></td>
+                <td><input type="radio" name="areasLimpias" value="NoAplica"></td>
+                <td><textarea id="areasLimpiasObservaciones" rows="1"></textarea></td>
+              </tr>
+              <!-- ELÉCTRICO -->
+              <tr>
+                <td class="category" rowspan="4">ELÉCTRICO</td>
+                <td>Las líneas conductoras se encuentran entubadas</td>
+                <td><input type="radio" name="lineasEntubadas" value="Cumple"></td>
+                <td><input type="radio" name="lineasEntubadas" value="NoCumple"></td>
+                <td><input type="radio" name="lineasEntubadas" value="NoAplica"></td>
+                <td><textarea id="lineasEntubadasObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Las conexiones cuentan con su respectivo pozo a tierra</td>
+                <td><input type="radio" name="conexionesPozoTierra" value="Cumple"></td>
+                <td><input type="radio" name="conexionesPozoTierra" value="NoCumple"></td>
+                <td><input type="radio" name="conexionesPozoTierra" value="NoAplica"></td>
+                <td><textarea id="conexionesPozoTierraObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>No se encuentran tomacorrientes sobrecargados</td>
+                <td><input type="radio" name="sinSobrecarga" value="Cumple"></td>
+                <td><input type="radio" name="sinSobrecarga" value="NoCumple"></td>
+                <td><input type="radio" name="sinSobrecarga" value="NoAplica"></td>
+                <td><textarea id="sinSobrecargaObservaciones" rows="1"></textarea></td>
+              </tr>
+              <tr>
+                <td>Los empalmes se encuentran en buen estado</td>
+                <td><input type="radio" name="empalmesBuenEstado" value="Cumple"></td>
+                <td><input type="radio" name="empalmesBuenEstado" value="NoCumple"></td>
+                <td><input type="radio" name="empalmesBuenEstado" value="NoAplica"></td>
+                <td><textarea id="empalmesBuenEstadoObservaciones" rows="1"></textarea></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CONCLUSIONES -->
+      <div class="card">
+        <h2>Conclusiones y/o Recomendaciones</h2>
+        <textarea
+            id="conclusiones"
+            name="conclusiones"
+            rows="6"
+            placeholder="Escribe tus conclusiones..."
+        ></textarea>
+        </div>
+        <!-- ——— RESPONSABLE DEL REGISTRO DE INSPECCIÓN ——— -->
+        <div class="card">
+          <h2>RESPONSABLE DEL REGISTRO DE INSPECCIÓN</h2>
+          <div class="form-group">
+            <label for="nombreRegistro">Nombres y Apellidos:</label>
+            <input type="text" id="nombreRegistro" name="nombreRegistro" required />
+          </div>
+          <div class="form-group">
+            <label for="cargoRegistroCell">Cargo:</label>
+            <input type="text" id="cargoRegistroCell" name="cargoRegistroCell" required />
+          </div>
+          <div class="form-group">
+            <label for="fechaRegistroCell">Fecha:</label>
+            <input type="date" id="fechaRegistroCell" name="fechaRegistroCell" required />
+          </div>
+        </div>  
+
+      <!-- FIRMA -->
+      <div class="card signature-card">
+        <h2>Firma</h2>
+        <canvas id="firmaCanvas"></canvas>
+        <button type="button" id="clearFirma">Borrar Firma</button>
+      </div>
+
+      <!-- ENVÍO -->
+      <button type="button" id="btnEnviar" class="btn">Enviar Datos</button>
+    </form>
+  </div>
+
+  <script src="formulario-locativas.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verificación de Botiquines</title>
+  <link rel="stylesheet" href="formulario.css">
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage-compat.js"></script>
+  <!-- Configuración de tu proyecto -->
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Verificación de Botiquines</h1>
+    <form id="dataForm">
+
+      <!-- DATOS FIJOS -->
+      <div class="card">
+        <h2>Datos Fijos</h2>
+        <div class="field-group">
+          <label for="codigo">Código</label>
+          <input type="text" id="codigo" name="codigo" value="JV-SSF-F013" readonly>
+        </div>
+        <div class="field-group">
+          <label for="version">Versión</label>
+          <input type="text" id="version" name="version" value="4" readonly>
+        </div>
+        <div class="field-group">
+          <label for="fecha">Fecha</label>
+          <input type="text" id="fecha" name="fecha" value="10/12/2024" readonly>
+        </div>
+      </div>
+
+      <!-- DATOS GENERALES -->
+      <div class="card">
+        <h2>Datos Generales</h2>
+        <div class="field-group">
+          <label for="cliente">Cliente / Unidad</label>
+          <input type="text" id="cliente" name="cliente" placeholder="Ingrese el nombre del cliente">
+        </div>
+        <div class="field-group">
+          <label for="fecha_inspeccion">Fecha de la Inspección</label>
+          <input type="date" id="fecha_inspeccion" name="fecha_inspeccion">
+        </div>
+        <div class="field-group">
+          <label for="responsable_inspeccion">Responsable de la Inspección</label>
+          <input type="text" id="responsable_inspeccion" name="responsable_inspeccion" placeholder="Nombre del inspector">
+        </div>
+        <div class="field-group">
+          <label for="cargo_inspector">Cargo del Inspector</label>
+          <input type="text" id="cargo_inspector" name="cargo_inspector" placeholder="Cargo del inspector">
+        </div>
+      </div>
+
+      <!-- VERIFICACIÓN DE BOTIQUINES -->
+      <div class="card table-responsive">
+        <h2>Verificación de Botiquines</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>N° Botiquín</th>
+              <th>Ubicación</th>
+              <th>¿El botiquín se encuentra en un lugar accesible?</th>
+              <th>¿Los componentes cuentan con fecha de expiración vigente?</th>
+              <th>¿Los componentes se encuentran en buen estado?</th>
+              <th>¿El botiquín cuenta con una leyenda de sus elementos?</th>
+              <th>¿El señalamiento del botiquín está obstruido?</th>
+              <th>Observación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filas 1–10 -->
+            <tr>
+              <td><input type="number" id="n_botiquin1" placeholder="1"></td>
+              <td><textarea id="ubicacion1" rows="1" placeholder="Ubicación..."></textarea></td>
+              <td><select id="accesible1"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="vigente1"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="estado1"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="leyenda1"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="obstruidos1"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><textarea id="observacion1" rows="1" placeholder="Observación..."></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="number" id="n_botiquin2" placeholder="2"></td>
+              <td><textarea id="ubicacion2" rows="1" placeholder="Ubicación..."></textarea></td>
+              <td><select id="accesible2"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="vigente2"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="estado2"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="leyenda2"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="obstruidos2"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><textarea id="observacion2" rows="1" placeholder="Observación..."></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="number" id="n_botiquin3" placeholder="3"></td>
+              <td><textarea id="ubicacion3" rows="1" placeholder="Ubicación..."></textarea></td>
+              <td><select id="accesible3"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="vigente3"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="estado3"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="leyenda3"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="obstruidos3"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><textarea id="observacion3" rows="1" placeholder="Observación..."></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="number" id="n_botiquin4" placeholder="4"></td>
+              <td><textarea id="ubicacion4" rows="1" placeholder="Ubicación..."></textarea></td>
+              <td><select id="accesible4"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="vigente4"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="estado4"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="leyenda4"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="obstruidos4"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><textarea id="observacion4" rows="1" placeholder="Observación..."></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="number" id="n_botiquin5" placeholder="5"></td>
+              <td><textarea id="ubicacion5" rows="1" placeholder="Ubicación..."></textarea></td>
+              <td><select id="accesible5"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="vigente5"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="estado5"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="leyenda5"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="obstruidos5"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><textarea id="observacion5" rows="1" placeholder="Observación..."></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="number" id="n_botiquin6" placeholder="6"></td>
+              <td><textarea id="ubicacion6" rows="1" placeholder="Ubicación..."></textarea></td>
+              <td><select id="accesible6"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="vigente6"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="estado6"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="leyenda6"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="obstruidos6"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><textarea id="observacion6" rows="1" placeholder="Observación..."></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="number" id="n_botiquin7" placeholder="7"></td>
+              <td><textarea id="ubicacion7" rows="1" placeholder="Ubicación..."></textarea></td>
+              <td><select id="accesible7"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="vigente7"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="estado7"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="leyenda7"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="obstruidos7"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><textarea id="observacion7" rows="1" placeholder="Observación..."></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="number" id="n_botiquin8" placeholder="8"></td>
+              <td><textarea id="ubicacion8" rows="1" placeholder="Ubicación..."></textarea></td>
+              <td><select id="accesible8"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="vigente8"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="estado8"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="leyenda8"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="obstruidos8"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><textarea id="observacion8" rows="1" placeholder="Observación..."></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="number" id="n_botiquin9" placeholder="9"></td>
+              <td><textarea id="ubicacion9" rows="1" placeholder="Ubicación..."></textarea></td>
+              <td><select id="accesible9"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="vigente9"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="estado9"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="leyenda9"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="obstruidos9"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><textarea id="observacion9" rows="1" placeholder="Observación..."></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="number" id="n_botiquin10" placeholder="10"></td>
+              <td><textarea id="ubicacion10" rows="1" placeholder="Ubicación..."></textarea></td>
+              <td><select id="accesible10"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="vigente10"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="estado10"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="leyenda10"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><select id="obstruidos10"><option value="">--</option><option>Sí</option><option>No</option></select></td>
+              <td><textarea id="observacion10" rows="1" placeholder="Observación..."></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- CONCLUSIONES -->
+      <div class="card">
+        <h2>Conclusiones y Recomendaciones</h2>
+        <div class="field-group">
+          <label for="conclusiones">Conclusiones</label>
+          <textarea id="conclusiones" name="conclusiones" rows="4" placeholder="Escribe tus conclusiones..."></textarea>
+        </div>
+      </div>
+
+      <!-- FIRMA -->
+      <div class="card signature-card">
+        <h2>Firma</h2>
+        <canvas id="firmaCanvas"></canvas>
+        <button type="button" id="clearFirma">Borrar Firma</button>
+      </div>
+
+      <!-- ENVÍO -->
+      <button type="button" id="btnEnviar" class="btn">Enviar Datos</button>
+
+    </form>
+  </div>
+
+  <script src="formulario.js"></script>
+</body>
+</html>

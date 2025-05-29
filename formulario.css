@@ -1,0 +1,201 @@
+/* formulario.css */
+
+/* ————— Reset & Base ————— */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f6f8;
+  color: #212121;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* ————— Cards ————— */
+.card {
+  background-color: #fff;
+  padding: 24px;
+  margin-bottom: 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  margin-bottom: 16px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+  color: #424242;
+}
+
+/* ————— Form Fields ————— */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.field-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.field-group input,
+.field-group select,
+.field-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #212121;
+}
+
+.field-group input::placeholder,
+.field-group textarea::placeholder {
+  color: #888;
+}
+
+.field-group textarea {
+  resize: vertical;
+  min-height: 3em;
+}
+
+/* ————— Table ————— */
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: 24px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+thead th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+/* ————— Signature Canvas ————— */
+.signature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signature-card canvas {
+  width: 100%;
+  height: 200px;
+  border: 1px dashed #ccc;
+  border-radius: 6px;
+  touch-action: none;
+  margin-bottom: 10px;
+}
+
+#clearFirma {
+  background-color: #E53935;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+#clearFirma:hover {
+  background-color: #c62828;
+}
+
+/* ————— Buttons ————— */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #1E88E5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #1565C0;
+}
+
+/* ————— Autosize Textareas ————— */
+.autosize {
+  resize: vertical;
+}
+
+/* ————— Responsive Layout ————— */
+@media (min-width: 600px) {
+  /* En pantallas más anchas, organiza label + campo en fila */
+  .field-group {
+    flex-direction: row;
+    align-items: center;
+  }
+  .field-group label {
+    flex: 0 0 200px;
+    margin-bottom: 0;
+  }
+  .field-group input,
+  .field-group select,
+  .field-group textarea {
+    flex: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 12px;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  .field-group input,
+  .field-group select,
+  .field-group textarea {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario - LIDER RACS</title>
+  <link rel="stylesheet" href="formulario-liderracs.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-file-alt"></i> Formulario de Reporte - LIDER RACS</h1>
+    <form id="racsForm">
+      <div class="card fade-in">
+        <h2><i class="fas fa-info-circle"></i> Datos Generales</h2>
+        <label for="fecha_actual">Fecha de Registro</label>
+        <input type="date" id="fecha_actual" name="fecha_actual" required />
+
+        <label for="razon_social">Razón Social</label>
+        <select id="razon_social" required>
+          <option value="">Seleccione una opción</option>
+          <option>J&amp;V Resguardo SAC</option>
+          <option>Liderman Servicios</option>
+          <option>J&amp;V Resguardo Selva SAC</option>
+          <option>J&amp;V Alarmas SAC</option>
+        </select>
+
+        <div id="macrozona-group" style="display:none;">
+          <label for="macrozona">Macrozona</label>
+          <select id="macrozona">
+            <option value="">Seleccione una macrozona</option>
+            <option>Gerencia Norte</option>
+            <option>Gerencia Sur</option>
+            <option>Gerencia Centro</option>
+            <option>Mineria</option>
+            <option>Base Chorrillos</option>
+          </select>
+        </div>
+
+        <label for="cliente">Cliente</label>
+        <input type="text" id="cliente" required />
+
+        <label for="unidad">Unidad</label>
+        <input type="text" id="unidad" required />
+
+        <label for="lider_zonal">Líder Zonal / Jefe Inmediato</label>
+        <input type="text" id="lider_zonal" required />
+
+        <label for="fecha_reporte">Fecha del Reporte</label>
+        <input type="date" id="fecha_reporte" required />
+
+        <label for="hora_reporte">Hora del Reporte</label>
+        <input type="time" id="hora_reporte" required />
+
+        <label for="tipo_reporte">Tipo de Reporte</label>
+        <select id="tipo_reporte" required>
+          <option value="">Seleccione un tipo</option>
+          <option>Condición subestandar.</option>
+          <option>Acto subestandar.</option>
+          <option>Incidente.</option>
+          <option>Condición ambiental.</option>
+          <option>Otro.</option>
+        </select>
+
+        <label for="categoria">Categoría de la Condición o Acto Inseguro Detectado <span style="color:red">*</span></label>
+        <div id="categoria" class="checkbox-list">
+          <label><input type="checkbox" name="categoria" value="Norma o Procedimientos"> Norma o Procedimientos</label>
+          <label><input type="checkbox" name="categoria" value="Equipos y/o Herramientas"> Equipos y/o Herramientas</label>
+          <label><input type="checkbox" name="categoria" value="Condición de Orden y Aseo"> Condición de Orden y Aseo</label>
+          <label><input type="checkbox" name="categoria" value="Manejo integral de residuos sólidos"> Manejo integral de residuos sólidos</label>
+          <label><input type="checkbox" name="categoria" value="Instalaciones locativas y/o eléctricas"> Instalaciones locativas y/o eléctricas</label>
+          <label><input type="checkbox" name="categoria" value="Señalización"> Señalización</label>
+          <label><input type="checkbox" name="categoria" value="Condición de Seguridad Vial"> Condición de Seguridad Vial</label>
+          <label><input type="checkbox" name="categoria" value="Manipulación de Cargas"> Manipulación de Cargas</label>
+          <label><input type="checkbox" name="categoria" value="Uso de elementos de protección personal"> Uso de elementos de protección personal</label>
+          <label><input type="checkbox" name="categoria" value="Condición Ambiental (agua,energía y aire)"> Condición Ambiental (agua,energía y aire)</label>
+          <label><input type="checkbox" name="categoria" value="Otro"> Otro</label>
+        </div>
+      </div>
+
+      <div class="card fade-in">
+        <h2><i class="fas fa-align-left"></i> Descripción del Reporte</h2>
+        <textarea id="descripcion" rows="5" required></textarea>
+      </div>
+
+      <div class="card fade-in">
+        <h2><i class="fas fa-camera"></i> Fotografía del Reporte</h2>
+        <button type="button" id="photo-btn">Tomar Fotografía</button>
+        <img id="previewFoto" style="display: none; margin-top: 10px; max-width: 240px; max-height: 160px; border: 1px solid #ccc;" />
+      </div>
+
+      <div id="capture-container" class="capture-container" style="display: none;">
+        <video id="camera-stream" autoplay playsinline></video>
+        <button type="button" id="capture-btn">Capturar</button>
+      </div>
+
+      <div class="card fade-in">
+        <h2><i class="fas fa-lightbulb"></i> Acción Inmediata o Recomendación</h2>
+        <textarea id="accion" rows="4" required></textarea>
+      </div>
+
+      <div class="card fade-in">
+        <h2><i class="fas fa-user"></i> Datos de Quien Reporta</h2>
+        <label for="reportado_por">Reportado Por</label>
+        <input type="text" id="reportado_por" required />
+
+        <label for="cargo">Cargo</label>
+        <input type="text" id="cargo" required />
+
+        <label for="contacto">Email / Teléfono</label>
+        <input type="text" id="contacto" required />
+      </div>
+
+      <div class="card fade-in">
+        <h2><i class="fas fa-signature"></i> Firma del Reportante</h2>
+        <canvas id="firmaCanvas"></canvas>
+        <button type="button" id="clearFirma">Limpiar Firma</button>
+      </div>
+
+      <button type="submit" id="btnEnviar"><i class="fas fa-paper-plane"></i> Enviar Reporte</button>
+    </form>
+  </div>
+
+  <!-- Botón para volver al menú principal con animación e haptic feedback -->
+  <div style="text-align: center; margin-top: 50px;">
+    <button class="return-button" id="volverBtn">
+      <span id="arrowIcon" style="display: inline-block; transform: translateX(0); transition: transform 0.3s ease;">⬅</span>
+      <span style="margin-left: 10px;">Volver al Menú Principal</span>
+    </button>
+  </div>
+
+  <script src="formulario-liderracs.js"></script>
+  <script>
+    document.getElementById('razon_social').addEventListener('change', function () {
+      const macrozonaGroup = document.getElementById('macrozona-group');
+      const macrozona = document.getElementById('macrozona');
+      if (this.value === 'J&V Resguardo SAC') {
+        macrozonaGroup.style.display = 'block';
+        macrozona.setAttribute('required', 'required');
+      } else {
+        macrozonaGroup.style.display = 'none';
+        macrozona.removeAttribute('required');
+        macrozona.value = '';
+      }
+    });
+
+    const returnButton = document.getElementById('volverBtn');
+    const arrow = document.getElementById('arrowIcon');
+
+    returnButton.addEventListener('mouseover', () => {
+      arrow.style.transform = 'translateX(-6px)';
+    });
+
+    returnButton.addEventListener('mouseout', () => {
+      arrow.style.transform = 'translateX(0)';
+    });
+
+    returnButton.addEventListener('click', () => {
+      if (navigator.vibrate) navigator.vibrate(60);
+      window.location.href = 'https://espejo.liderman.com.pe/registros_somma/';
+    });
+  </script>
+</body>
+</html>

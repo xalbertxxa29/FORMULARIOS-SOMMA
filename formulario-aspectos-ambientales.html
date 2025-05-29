@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario Inspección Aspectos Ambientales</title>
+  <link rel="stylesheet" href="formulario-aspectos-ambientales.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Inspección de Aspectos Ambientales</h1>
+    <form id="dataForm">
+      <!-- ——— DATOS GENERALES ——— -->
+      <fieldset class="group">
+        <legend>Datos Generales</legend>
+        <label>Unidad:
+          <input type="text" id="unidad" required>
+        </label>
+        <label>Puesto / Oficina / Etc:
+          <input type="text" id="puesto" required>
+        </label>
+        <label>Fecha:
+          <input type="date" id="fechaInspeccion" required>
+        </label>
+      </fieldset>
+
+      <!-- ——— CALIFICACIONES ——— -->
+      <fieldset class="group">
+        <legend>1. Manejo de Papel</legend>
+        <div class="row">
+          <div class="desc">Se dispone de contenedores para ubicación de papel usado por una y por dos caras</div>
+          <div class="radios">
+            <label><input type="radio" name="papel1" value="Bueno" required> B</label>
+            <label><input type="radio" name="papel1" value="Malo"> M</label>
+            <label><input type="radio" name="papel1" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Toma de conciencia ambiental ahorro de papel (uso de papel borrador)</div>
+          <div class="radios">
+            <label><input type="radio" name="papel2" value="Bueno" required> B</label>
+            <label><input type="radio" name="papel2" value="Malo"> M</label>
+            <label><input type="radio" name="papel2" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se hace disposición del papel y cartón usado a un proveedor que garantice su aprovechamiento</div>
+          <div class="radios">
+            <label><input type="radio" name="papel3" value="Bueno" required> B</label>
+            <label><input type="radio" name="papel3" value="Malo"> M</label>
+            <label><input type="radio" name="papel3" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Señalización de ahorro de papel en impresoras y fotocopiadoras</div>
+          <div class="radios">
+            <label><input type="radio" name="papel4" value="Bueno" required> B</label>
+            <label><input type="radio" name="papel4" value="Malo"> M</label>
+            <label><input type="radio" name="papel4" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Ubicación en puestos de trabajo para ganchos de cosedora usados</div>
+          <div class="radios">
+            <label><input type="radio" name="papel5" value="Bueno" required> B</label>
+            <label><input type="radio" name="papel5" value="Malo"> M</label>
+            <label><input type="radio" name="papel5" value="NA"> N/A</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>2. Manejo de Energía</legend>
+        <!-- filas energía 1..7 -->
+        <div class="row">
+          <div class="desc">Se mantienen las luces apagadas en el tiempo en que el personal no se encuentra en el puesto de trabajo</div>
+          <div class="radios">
+            <label><input type="radio" name="energia1" value="Bueno" required> B</label>
+            <label><input type="radio" name="energia1" value="Malo"> M</label>
+            <label><input type="radio" name="energia1" value="NA"> N/A</label>
+          </div>
+        </div>        
+        <!-- ... repetir para energia2 .. energia7 -->
+        <div class="row">
+          <div class="desc">Se mantienen los computadores apagados, hibernando o suspendidos en el tiempo en que el personal no se encuentra en el puesto de trabajo</div>
+          <div class="radios">
+            <label><input type="radio" name="energia2" value="Bueno" required> B</label>
+            <label><input type="radio" name="energia2" value="Malo"> M</label>
+            <label><input type="radio" name="energia2" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Al final de la jornada se apagan los equipos de cómputo, impresora, fax, scanner, estabilizadores</div>
+          <div class="radios">
+            <label><input type="radio" name="energia3" value="Bueno" required> B</label>
+            <label><input type="radio" name="energia3" value="Malo"> M</label>
+            <label><input type="radio" name="energia3" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Al final de la jornada laboral se apagan los equipos electricos y electronicos, asi como los adaptadores de corriente (Ejem. cargadores de celulares)</div>
+          <div class="radios">
+            <label><input type="radio" name="energia4" value="Bueno" required> B</label>
+            <label><input type="radio" name="energia4" value="Malo"> M</label>
+            <label><input type="radio" name="energia4" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Existen avisos de uso eficiente y ahorro de energia dentro de las instalaciones</div>
+          <div class="radios">
+            <label><input type="radio" name="energia5" value="Bueno" required> B</label>
+            <label><input type="radio" name="energia5" value="Malo"> M</label>
+            <label><input type="radio" name="energia5" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se utilizan bombillas ahorradoras de energia en las instalaciones</div>
+          <div class="radios">
+            <label><input type="radio" name="energia6" value="Bueno" required> B</label>
+            <label><input type="radio" name="energia6" value="Malo"> M</label>
+            <label><input type="radio" name="energia6" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se realiza mantenimiento o revisión de redes eléctricas de las instalaciones por personal competente por lo menos una vez al año</div>
+          <div class="radios">
+            <label><input type="radio" name="energia7" value="Bueno" required> B</label>
+            <label><input type="radio" name="energia7" value="Malo"> M</label>
+            <label><input type="radio" name="energia7" value="NA"> N/A</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>3. Manejo del Agua</legend>
+        <!-- filas agua 1..7 -->
+        <div class="row">
+          <div class="desc">Se adquiere agua por medio de empresa de acueducto autorizada</div>
+          <div class="radios">
+            <label><input type="radio" name="agua1" value="Bueno" required> B</label>
+            <label><input type="radio" name="agua1" value="Malo"> M</label>
+            <label><input type="radio" name="agua1" value="NA"> N/A</label>
+          </div>
+        </div>
+         <!-- ... repetir para agua2 .. agua7 -->
+        <div class="row">
+          <div class="desc">Periodicamente se realizan pruebas basicas para identificar fugas en el sistema de alcantarillado</div>
+          <div class="radios">
+            <label><input type="radio" name="agua2" value="Bueno" required> B</label>
+            <label><input type="radio" name="agua2" value="Malo"> M</label>
+            <label><input type="radio" name="agua2" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Existen avisos de uso eficiente y ahorro de agua dentro de las instalaciones.</div>
+          <div class="radios">
+            <label><input type="radio" name="agua3" value="Bueno" required> B</label>
+            <label><input type="radio" name="agua3" value="Malo"> M</label>
+            <label><input type="radio" name="agua3" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se utilizan dispositivos ahorradores de agua en el baño y/o cafetería.</div>
+          <div class="radios">
+            <label><input type="radio" name="agua4" value="Bueno" required> B</label>
+            <label><input type="radio" name="agua4" value="Malo"> M</label>
+            <label><input type="radio" name="agua4" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">El personal esta sensibilizado en el ahorro de agua y realiza practicas adecuadas en el uso de este recurso. (Ejem. Cerrar la llave mientras se jabona las manos)</div>
+          <div class="radios">
+            <label><input type="radio" name="agua5" value="Bueno" required> B</label>
+            <label><input type="radio" name="agua5" value="Malo"> M</label>
+            <label><input type="radio" name="agua5" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se realiza lavado de tanques de agua para su desinfección</div>
+          <div class="radios">
+            <label><input type="radio" name="agua6" value="Bueno" required> B</label>
+            <label><input type="radio" name="agua6" value="Malo"> M</label>
+            <label><input type="radio" name="agua6" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Ninguna actividad de mantenimiento realizada en este periodo provocó vertimientos al sistema de alcantarillado.</div>
+          <div class="radios">
+            <label><input type="radio" name="agua7" value="Bueno" required> B</label>
+            <label><input type="radio" name="agua7" value="Malo"> M</label>
+            <label><input type="radio" name="agua7" value="NA"> N/A</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>4. Manejo de Residuos Líquidos</legend>
+        <!-- filas resLiq1..3 -->
+        <div class="row">
+          <div class="desc">Unidades sanitarias en buena condición, funcionalidad, sin posibles filtraciones o derrames y normas mínimas de higiene.</div>
+          <div class="radios">
+            <label><input type="radio" name="resLiq1" value="Bueno" required> B</label>
+            <label><input type="radio" name="resLiq1" value="Malo"> M</label>
+            <label><input type="radio" name="resLiq1" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Disposición de residuos líquidos contaminados a través del sistema de alcantarillado o con proveedor autorizado</div>
+          <div class="radios">
+            <label><input type="radio" name="resLiq2" value="Bueno" required> B</label>
+            <label><input type="radio" name="resLiq2" value="Malo"> M</label>
+            <label><input type="radio" name="resLiq2" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Certificado de la última entrega de residuos liquidos contaminados o recibo de acueducto</div>
+          <div class="radios">
+            <label><input type="radio" name="resLiq3" value="Bueno" required> B</label>
+            <label><input type="radio" name="resLiq3" value="Malo"> M</label>
+            <label><input type="radio" name="resLiq3" value="NA"> N/A</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>5. Manejo de Residuos Peligrosos</legend>
+        <!-- filas resPel1..resPel5 -->
+         <div class="row">
+          <div class="desc">Contenedores para almacenamiento de residuos peligrosos tales como luminarias, cartuchos y pilas</div>
+          <div class="radios">
+            <label><input type="radio" name="resPel1" value="Bueno" required> B</label>
+            <label><input type="radio" name="resPel1" value="Malo"> M</label>
+            <label><input type="radio" name="resPel1" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Los residuos peligrosos tienen un almacenamiento inferior a 1 año</div>
+          <div class="radios">
+            <label><input type="radio" name="resPel2" value="Bueno" required> B</label>
+            <label><input type="radio" name="resPel2" value="Malo"> M</label>
+            <label><input type="radio" name="resPel2" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Proveedor con Licencia Ambiental para la disposición de residuos peligrosos</div>
+          <div class="radios">
+            <label><input type="radio" name="resPel3" value="Bueno" required> B</label>
+            <label><input type="radio" name="resPel3" value="Malo"> M</label>
+            <label><input type="radio" name="resPel3" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Certificado de la última entrega de residuos peligros (si ya se tiene: certificado de disposición)</div>
+          <div class="radios">
+            <label><input type="radio" name="resPel4" value="Bueno" required> B</label>
+            <label><input type="radio" name="resPel4" value="Malo"> M</label>
+            <label><input type="radio" name="resPel4" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Disposición de Residuos de Aparatos Eléctricos y Electrónicos (equipos de computo, impresoras, cableado, estabilizadores) o su almacenamiento para envio a sede principal</div>
+          <div class="radios">
+            <label><input type="radio" name="resPel5" value="Bueno" required> B</label>
+            <label><input type="radio" name="resPel5" value="Malo"> M</label>
+            <label><input type="radio" name="resPel5" value="NA"> N/A</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>6. Registro de Estadísticas</legend>
+        <!-- filas regEst1..regEst4 -->
+         <div class="row">
+          <div class="desc">Se registra la entrega de residuos sólidos y se lleva su estadística</div>
+          <div class="radios">
+            <label><input type="radio" name="regEst1" value="Bueno" required> B</label>
+            <label><input type="radio" name="regEst1" value="Malo"> M</label>
+            <label><input type="radio" name="regEst1" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se lleva el registro de consumo de energia de los dos últimos periodos</div>
+          <div class="radios">
+            <label><input type="radio" name="regEst2" value="Bueno" required> B</label>
+            <label><input type="radio" name="regEst2" value="Malo"> M</label>
+            <label><input type="radio" name="regEst2" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se lleva el registro de consumo de agua de los dos últimos periodos</div>
+          <div class="radios">
+            <label><input type="radio" name="regEst3" value="Bueno" required> B</label>
+            <label><input type="radio" name="regEst3" value="Malo"> M</label>
+            <label><input type="radio" name="regEst3" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se han tomado acciones cuando se ha incumplido la meta de generación de residuos, consumo de agua o de energia</div>
+          <div class="radios">
+            <label><input type="radio" name="regEst4" value="Bueno" required> B</label>
+            <label><input type="radio" name="regEst4" value="Malo"> M</label>
+            <label><input type="radio" name="regEst4" value="NA"> N/A</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>7. Toma de Conciencia</legend>
+        <!-- filas tomCo1..tomCo7 -->
+         <div class="row">
+          <div class="desc">Los trabajadores conocen y entienden la politica ambiental</div>
+          <div class="radios">
+            <label><input type="radio" name="tomCo1" value="Bueno" required> B</label>
+            <label><input type="radio" name="tomCo1" value="Malo"> M</label>
+            <label><input type="radio" name="tomCo1" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Capacitaciones promoviendo la conciencia ambiental por lo menos una vez al año</div>
+          <div class="radios">
+            <label><input type="radio" name="tomCo2" value="Bueno" required> B</label>
+            <label><input type="radio" name="tomCo2" value="Malo"> M</label>
+            <label><input type="radio" name="tomCo2" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Los trabajadores conocen los aspectos e impactos ambientales asociados a sus actividades</div>
+          <div class="radios">
+            <label><input type="radio" name="tomCo3" value="Bueno" required> B</label>
+            <label><input type="radio" name="tomCo3" value="Malo"> M</label>
+            <label><input type="radio" name="tomCo3" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">El personal conoce e identifica la clasificación de residuos. (Entrevistar personal)</div>
+          <div class="radios">
+            <label><input type="radio" name="tomCo4" value="Bueno" required> B</label>
+            <label><input type="radio" name="tomCo4" value="Malo"> M</label>
+            <label><input type="radio" name="tomCo4" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se conoce las medidas ambientales que tienen las Hojas de Seguridad de las sustancias químicas (productos de aseo): Medidas en caso de incendio; Manejo y almacenamiento; Estabilidad y Reactividad; información ecológica; consideraciones de disposición; información sobre transporte</div>
+          <div class="radios">
+            <label><input type="radio" name="tomCo5" value="Bueno" required> B</label>
+            <label><input type="radio" name="tomCo5" value="Malo"> M</label>
+            <label><input type="radio" name="tomCo5" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se evidencia el conocimiento por parte del personal de como actuar ante un derrame o fuga. </div>
+          <div class="radios">
+            <label><input type="radio" name="tomCo6" value="Bueno" required> B</label>
+            <label><input type="radio" name="tomCo6" value="Malo"> M</label>
+            <label><input type="radio" name="tomCo6" value="NA"> N/A</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="desc">Se realizan actividades que involucren a los trabajadores con la preservación del medio ambiente </div>
+          <div class="radios">
+            <label><input type="radio" name="tomCo7" value="Bueno" required> B</label>
+            <label><input type="radio" name="tomCo7" value="Malo"> M</label>
+            <label><input type="radio" name="tomCo7" value="NA"> N/A</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Observaciones -->
+      <fieldset class="group">
+        <legend>Observaciones</legend>
+        <textarea id="observaciones" rows="3"></textarea>
+      </fieldset>
+
+      <!-- Hallazgos / Plan de Acción / Responsable -->
+      <div class="followup">
+        <div>
+          <label>Hallazgos:<br>
+            <textarea id="hallazgos" rows="3"></textarea>
+          </label>
+        </div>
+        <div>
+          <label>Plan de Acción:<br>
+            <textarea id="planAccion" rows="3"></textarea>
+          </label>
+        </div>
+        <div>
+          <label>Responsable:<br>
+            <textarea id="responsable" rows="3"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <!-- ——— QUIÉN INSPECCIONÓ Y RESPONSABLE SEGUIMIENTO ——— -->
+      <fieldset class="group">
+        <legend>Firmas y Fechas</legend>
+        <div class="row">
+          <label>Nombre y Cargo Inspector:
+            <input type="text" id="inspectorNombre" required>
+          </label>
+          <label>Nombre y Cargo Responsable:
+            <input type="text" id="seguidorNombre" required>
+          </label>
+        </div>
+        <div class="row">
+          <label>Fecha Seguimiento:
+            <input type="date" id="fechaSeguimiento" required>
+          </label>
+        </div>
+
+        <div class="signature-section">
+          <strong>Firma Inspector:</strong>
+          <canvas id="firmaCanvas"></canvas><br>
+          <button type="button" id="clearFirma">Borrar Firma</button>
+        </div>
+
+        <div class="signature-section">
+          <strong>Firma Responsable:</strong>
+          <canvas id="firmaCanvasSeguidor"></canvas><br>
+          <button type="button" id="clearFirmaSeguidor">Borrar Firma Seguimiento</button>
+        </div>
+      </fieldset>
+
+      <!-- Botón Enviar -->
+      <div class="actions">
+        <button type="button" id="btnEnviar">Enviar</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="formulario-aspectos-ambientales.js"></script>
+
+  <div style="text-align: center; margin-top: 40px;">
+    <button class="return-button" onclick="window.location.href='index.html'">
+      ⬅ Volver al Menú Principal
+    </button>
+  </div>
+</body>
+</html>
