@@ -1,0 +1,434 @@
+/* formulario-epp.css */
+
+/* Variables de color (ajusta para que coincidan con tu tema general) */
+:root {
+  --primary: #9c1003;   /* Rojo principal */
+  --accent:  #1e88e5;   /* Azul de acento */
+  --gray:    #ecf0f1;   /* Fondo gris claro */
+  --text:    #333;      /* Color de texto principal */
+  --border:  #bdc3c7;   /* Color de borde general */
+  --danger: #e74c3c;    /* Rojo para errores/acciones de borrar */
+  --success: #27ae60;   /* Verde para éxito/añadir */
+  --header-bg: #c0c0c0; /* Gris claro para encabezados de tabla según PDF */
+  --header-text: #000;  /* Texto negro para encabezados de tabla */
+  --table-border-color: #000; /* Borde de tabla más oscuro */
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body y Contenedor Principal */
+body {
+  background: var(--gray);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  padding: 15px; /* Padding responsive */
+}
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px; /* Padding responsive */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--primary);
+  font-size: 1.8rem; /* Tamaño de fuente responsive */
+}
+
+/* Fieldsets (Grupos de campos) */
+.group {
+  border: 2px solid var(--border);
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  background: #fffefc;
+}
+.group legend {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--primary);
+  padding: 0 8px;
+}
+.group label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 600;
+}
+.group input[type="text"],
+.group input[type="date"],
+.group textarea:not(.textarea-with-lines), /* Excluir el que tendrá líneas */
+.group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+.group input:focus,
+.group textarea:not(.textarea-with-lines):focus,
+.group select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(30,136,229,0.2);
+  outline: none;
+}
+/* Estilo para inputs con error de validación */
+input.input-error, select.input-error, textarea.input-error {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 3px rgba(231,76,60,0.2) !important;
+}
+
+/* Nota dentro del fieldset */
+.group .note {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 15px;
+  padding-left: 5px;
+  border-left: 3px solid var(--accent);
+}
+
+/* Contenedor de la tabla de EPP */
+#epp-table-container {
+  margin-top: 15px;
+  overflow-x: auto; /* Permite scroll horizontal */
+}
+
+/* Estilo para la única tabla principal */
+.epp-main-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  min-width: 900px; /* Ancho mínimo para que todo quepa sin superposición */
+  table-layout: fixed; /* Asegura que los anchos de columna fijos se respeten */
+  border: 1px solid var(--table-border-color); /* Borde exterior */
+}
+.epp-main-table th, .epp-main-table td {
+  border: 1px solid var(--table-border-color); /* Bordes internos */
+  padding: 3px 2px; /* Padding reducido */
+  font-size: 0.75rem; /* Fuente base para celdas */
+  vertical-align: middle; /* Alineación vertical */
+  height: 28px; /* Altura de fila */
+  box-sizing: border-box;
+}
+.epp-main-table thead th {
+  background-color: var(--header-bg); /* Gris claro para encabezados */
+  color: var(--header-text); /* Texto negro para encabezados */
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.1; /* Interlineado apretado */
+}
+
+/* Estilos de las cabeceras de la tabla EPP */
+.epp-main-table thead tr:first-child th { /* Fila N°, Nombre, EPP_GROUP_HEADER, Observaciones, Acciones */
+  height: 25px;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  padding: 2px 3px;
+}
+.epp-main-table thead th.epp-group-header {
+  height: 20px !important; /* Altura ajustada */
+  font-size: 0.7rem;
+  padding: 1px 3px;
+  border-bottom: 1px solid var(--table-border-color); /* Borde inferior para separar de los EPPs */
+}
+.epp-main-table thead th.epp-header-main { /* Cabeceras EPP individuales (CASCO, CHALECO, etc.) */
+  height: 25px !important;
+  font-size: 0.7rem; /* Reducido */
+  padding: 2px 3px;
+  border-top: 1px solid var(--table-border-color); /* Borde superior para separar de EPP_GROUP_HEADER */
+}
+.epp-main-table thead th.epp-subheader { /* Sub-cabeceras SI/NO, Estado */
+  height: 20px !important;
+  font-size: 0.65rem; /* Reducido */
+  font-weight: normal;
+  padding: 1px 2px;
+  border-top: 1px solid var(--table-border-color); /* Borde superior para separar de EPP_GROUP_HEADER */
+}
+
+/* --- ANCHOS DE COLUMNA DEFINITIVOS PARA LA TABLA PRINCIPAL --- */
+/* Son 16 columnas lógicas: N° (1), Nombre (1), EPPs (6*2=12), Observaciones (1), Acciones (1) */
+/* La suma de los anchos debe ser 100% */
+.epp-main-table th.col-n, .epp-main-table td.col-n { width: 4%; } /* N° */
+.epp-main-table th.col-nombre-trabajador, .epp-main-table td.col-nombre-trabajador { width: 14%; } /* NOMBRE DEL TRABAJADOR */
+
+/* EPPs: 6 elementos. Cada uno tiene 2 subcolumnas (SI/NO, Estado) */
+/* Ancho total para los 6 EPPs es (100% - 4% - 14% - 10% - 3% = 69%) */
+/* 69% / 12 subcolumnas = 5.75% por subcolumna */
+.epp-main-table th:nth-child(3), .epp-main-table td:nth-child(3) { width: 5.75%; } /* Casco SI/NO */
+.epp-main-table th:nth-child(4), .epp-main-table td:nth-child(4) { width: 5.75%; } /* Casco Estado */
+.epp-main-table th:nth-child(5), .epp-main-table td:nth-child(5) { width: 5.75%; } /* Chaleco SI/NO */
+.epp-main-table th:nth-child(6), .epp-main-table td:nth-child(6) { width: 5.75%; } /* Chaleco Estado */
+.epp-main-table th:nth-child(7), .epp-main-table td:nth-child(7) { width: 5.75%; } /* Lentes SI/NO */
+.epp-main-table th:nth-child(8), .epp-main-table td:nth-child(8) { width: 5.75%; } /* Lentes Estado */
+.epp-main-table th:nth-child(9), .epp-main-table td:nth-child(9) { width: 5.75%; } /* Botas SI/NO */
+.epp-main-table th:nth-child(10), .epp-main-table td:nth-child(10) { width: 5.75%; } /* Botas Estado */
+.epp-main-table th:nth-child(11), .epp-main-table td:nth-child(11) { width: 5.75%; } /* Prot. Auditivo SI/NO */
+.epp-main-table th:nth-child(12), .epp-main-table td:nth-child(12) { width: 5.75%; } /* Prot. Auditivo Estado */
+.epp-main-table th:nth-child(13), .epp-main-table td:nth-child(13) { width: 5.75%; } /* Guantes SI/NO */
+.epp-main-table th:nth-child(14), .epp-main-table td:nth-child(14) { width: 5.75%; } /* Guantes Estado */
+
+.epp-main-table th.col-observaciones, .epp-main-table td.col-observaciones { width: 10%; } /* Observaciones */
+.epp-main-table th.col-acciones, .epp-main-table td.col-acciones { width: 3%; } /* Acciones */
+
+/* Estilos de los inputs/selects dentro de las celdas */
+.epp-main-table select,
+.epp-main-table input[type="text"],
+.epp-main-table textarea {
+    width: 100%;
+    padding: 0px 1px; /* Mínimo padding */
+    font-size: 0.65rem; /* Fuente muy pequeña */
+    height: 22px; /* Altura fija para todos */
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 2px; /* Bordes más pequeños */
+    background-color: #fff;
+    text-align: center; /* Centrar texto en inputs/selects */
+    vertical-align: middle; /* Asegurar alineación vertical */
+}
+.epp-main-table textarea {
+    min-height: 22px;
+    resize: none; /* Deshabilitar redimensionamiento manual */
+    overflow: hidden; /* Ocultar barras de scroll */
+}
+/* Estilo para los select que se vean más como cuadros con flecha */
+.epp-main-table select.epp-yn-select,
+.epp-main-table select.epp-status-select {
+    -webkit-appearance: none; /* Quitar estilo nativo en WebKit */
+    -moz-appearance: none;    /* Quitar estilo nativo en Mozilla */
+    appearance: none;         /* Quitar estilo nativo */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2069.4L153.6%20202.8c-2.4%202.4-5.2%203.6-8.4%203.6s-6-1.2-8.4-3.6L5.4%2069.4c-4.8-4.8-4.8-12.8%200-17.6s12.8-4.8%2017.6%200l130%20130%20130-130c4.8-4.8%2012.8-4.8%2017.6%200s4.8%2012.8%200%2017.6z%22%2F%3E%3C%2Fsvg%3E'); /* Flecha SVG */
+    background-repeat: no-repeat;
+    background-position: right 3px center; /* Posición de la flecha */
+    background-size: 8px; /* Tamaño de la flecha */
+    padding-right: 15px; /* Espacio para la flecha */
+}
+
+
+/* Líneas guía en textarea (conclusiones, etc.) */
+.textarea-with-lines {
+    background-image: linear-gradient(to bottom, #ccc 1px, transparent 1px);
+    background-size: 100% 25px; /* Altura de línea, ajusta según el line-height */
+    background-repeat: repeat-y;
+    line-height: 25px; /* Espaciado entre líneas, debe coincidir con background-size */
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    padding: 5px 320px; /* Padding para que el texto no toque las líneas */
+    font-size: 1rem;
+    min-height: 125px; /* 5 líneas * 25px = 125px */
+    resize: vertical;
+    box-sizing: border-box;
+}
+.textarea-with-lines:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(30,136,229,0.2);
+    outline: none;
+}
+
+
+/* Botón para añadir fila */
+.add-row-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background-color: var(--success);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+.add-row-button:hover {
+  background-color: #219d53;
+}
+.add-row-button i {
+  margin-right: 8px;
+}
+
+/* Botón de eliminar fila */
+.delete-row-button {
+  background: none;
+  border: none;
+  color: var(--danger);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform .2s;
+}
+.delete-row-button:hover {
+  transform: scale(1.1);
+}
+
+/* Sección de Firma */
+.signature-section {
+  border: 2px solid var(--border);
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  background: #fffefc;
+}
+.signature-section strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+.signature-section canvas {
+  width: 100%;
+  height: 150px; /* Altura de la firma */
+  border: 1px solid var(--border);
+  touch-action: none; /* Crucial para evitar scroll en móviles */
+  display: block;
+  margin: 0 auto 10px;
+  border-radius: 4px;
+}
+.signature-section button {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #fff;
+  transition: background .2s;
+}
+.signature-section button:hover {
+  background: #1e70c0;
+}
+/* Estado del texto de firma */
+.photo-status-text {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+.photo-status-text.required-status {
+  color: var(--danger);
+}
+.photo-status-text.taken-status {
+  color: var(--success);
+  font-weight: bold;
+}
+
+/* Acciones (Botón Enviar) */
+.actions {
+  text-align: right;
+  margin-top: 20px;
+}
+.actions button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  background-color: var(--primary); /* Color principal para el botón de enviar */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+.actions button:hover {
+  background-color: #8a0e0e;
+}
+
+/* Mensajes flotantes */
+#mensaje-flotante {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px 30px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  z-index: 1000;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: none; /* Controlado por JS */
+  background-color: rgba(0,0,0,0.8);
+}
+/* Spinner de carga */
+#loading-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+#loading-overlay .spinner {
+  border: 4px solid rgba(255,255,255,.3);
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  .container {
+    padding: 15px;
+  }
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  .group {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .group label {
+    font-size: 0.9rem;
+    margin: 8px 0 4px;
+  }
+  .group input, .group textarea, .group select {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+  /* Tabla EPP en móvil */
+  .epp-main-table {
+      min-width: 320px; /* Ancho mínimo para que la tabla se ajuste en móvil */
+      overflow-x: auto; /* Permite scroll horizontal dentro de la tabla si es muy estrecha */
+  }
+  .epp-main-table th, .epp-main-table td {
+    padding: 3px 1px; /* Reducir aún más el padding */
+    font-size: 0.65rem; /* Reducir el tamaño de fuente */
+    height: 25px; /* Reducir la altura de la fila */
+  }
+  .epp-main-table select,
+  .epp-main-table input[type="text"],
+  .epp-main-table textarea {
+    font-size: 0.65rem; /* Ajustar el tamaño de fuente dentro de los inputs/selects */
+    padding: 1px; /* Reducir el padding */
+    height: 22px; /* Reducir altura de los controles */
+  }
+  .add-row-button, .actions button {
+    font-size: 0.95rem;
+    padding: 10px 18px;
+  }
+  .signature-section {
+    padding: 10px;
+  }
+  .signature-section canvas {
+    height: 120px;
+  }
+  .signature-section button {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}

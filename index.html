@@ -19,10 +19,11 @@
       INSPECCIONES
     </button>
     <!-- 🔄 Cambiado para redirigir directamente -->
-    <button onclick="window.location.href='https://xalbertxxa29.github.io/FORMULARIOS-SOMMA/formulario-liderracs.html'">
+    <button onclick="loadIframe('formulario-liderracs.html')">
       <img src="icono2.png" alt="Icono" class="icon">
       REPORTES LIDERACS
-    </button>
+    </button>  
+    <button class="back-button" onclick="showPage('inspeccion')">Regresar</button>
   </div>
 
   <div id="inspeccion" class="content hidden">
@@ -38,6 +39,12 @@
     </button>
     <button onclick="loadIframe('formulario.html')">
       Verificación de Botiquines
+    </button>
+    <button onclick="loadIframe('formulario-sst.html')">
+      Registro de inspecciones internas de SST
+    </button>
+    <button onclick="loadIframe('formulario-epp.html')">
+      Inspección de Estado y Uso de EPP
     </button>
     <button class="back-button" onclick="showPage('inspeccion')">Regresar</button>
   </div>

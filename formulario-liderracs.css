@@ -1,5 +1,21 @@
 /* formulario-liderracs.css actualizado */
 
+/* Variables Globales (Si las tienes en un archivo aparte, puedes quitarlas de aquí) */
+:root {
+  --primary-color: #9c1003;
+  --secondary-color: #d2dfe7;
+  --bg-sidebar: linear-gradient(180deg, #700000, #5f0000);
+  --transition-speed: 0.3s;
+  --fs-xs: clamp(0.75rem, 1vw, 0.875rem);
+  --fs-sm: clamp(0.875rem, 1.2vw, 1rem);
+  --fs-md: clamp(1rem, 1.5vw, 1.25rem);
+  --space-xs: clamp(0.25rem, 1vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 1vw, 1rem);
+  --space-md: clamp(1rem, 2vw, 2rem);
+  --error-red: #e53935; /* Rojo para errores */
+  --success-green: #27ae60; /* Verde para éxito */
+}
+
 body {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(to right, #f9f9f9, #e0eafc);
@@ -32,6 +48,11 @@ h1 {
   font-size: 2rem;
 }
 
+h1 i {
+    margin-right: 10px;
+    color: #1e2a78; /* Color para el icono del título principal */
+}
+
 .card {
   background: #fefefe;
   border: 1px solid #ddd;
@@ -53,6 +74,13 @@ h1 {
   font-size: 1.25rem;
   border-bottom: 2px solid #eee;
   padding-bottom: 8px;
+  display: flex; /* Para alinear icono y texto */
+  align-items: center;
+}
+
+.card h2 i {
+    margin-right: 8px;
+    color: #1e88e5; /* Color para los iconos de subtítulos */
 }
 
 label {
@@ -93,12 +121,12 @@ select:focus {
 input:required:invalid,
 select:required:invalid,
 textarea:required:invalid {
-  border-color: #e53935;
+  border-color: var(--error-red);
   background: #fff5f5;
 }
 
 .input-error {
-  border: 2px solid #e53935 !important;
+  border: 2px solid var(--error-red) !important;
   background: #fff5f5 !important;
 }
 
@@ -146,6 +174,7 @@ textarea {
   accent-color: #1e88e5;
 }
 
+/* ESTILO CLAVE PARA LA FIRMA */
 canvas {
   width: 100%;
   height: 200px;
@@ -153,11 +182,22 @@ canvas {
   border-radius: 6px;
   margin-top: 10px;
   background: #fff;
+  touch-action: none; /* <-- ¡ESTO ES CRUCIAL PARA LA FIRMA EN MÓVILES! */
+}
+
+/* Color específico para el botón de enviar */
+#btnEnviar {
+  background: #e53935; /* Rojo */
+}
+
+#btnEnviar:hover {
+  background: #c0392b; /* Rojo más oscuro al hover */
+  transform: translateY(-2px);
 }
 
 button {
   display: inline-block;
-  background: #1e88e5;
+  background: #1e88e5; /* Color por defecto para otros botones si no se sobrescribe */
   color: #fff;
   padding: 12px 20px;
   font-size: 1rem;
@@ -184,6 +224,7 @@ button:hover {
   transition: opacity 0.3s ease;
 }
 
+/* Estilos para el overlay de la cámara */
 #capture-container {
   position: fixed;
   top: 0;
@@ -191,7 +232,7 @@ button:hover {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.95);
-  display: none;
+  display: none; /* Se controla con JS */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -213,9 +254,10 @@ button:hover {
   position: relative;
   margin-top: 20px;
   z-index: 2;
-  background: #43a047;
+  background: #43a047; /* Color para el botón de capturar */
 }
 
+/* Mensaje flotante (para validaciones y éxito) */
 #mensaje-flotante {
   position: fixed;
   top: 50%;
@@ -231,6 +273,7 @@ button:hover {
   animation: fadeIn 0.3s ease;
 }
 
+/* Spinner de carga */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -258,28 +301,74 @@ button:hover {
   animation: spin 1s linear infinite;
 }
 
+/* Media Queries para Responsive Design */
 @media (max-width: 600px) {
+  body {
+    padding: 10px; /* Reducido para móviles */
+  }
   .container {
     padding: 16px;
   }
   h1 {
     font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  .card {
+    padding: 16px;
+    margin-bottom: 16px;
   }
   .card h2 {
     font-size: 1.1rem;
+    margin-bottom: 10px;
   }
-  button {
-    width: 100%;
+  label {
+    font-size: 0.9rem;
+    margin-top: 10px;
   }
-  #previewFoto {
-    max-width: 100%;
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    margin-top: 4px;
+  }
+  textarea {
+    min-height: 70px;
   }
   .checkbox-list {
     flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+  .checkbox-list label {
+    flex: 1 1 100%; /* Ocupar todo el ancho */
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    min-width: unset;
+  }
+  canvas {
+    height: 160px; /* Ajustar altura para móvil */
+  }
+  button {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    margin-top: 16px;
+  }
+  #previewFoto {
+    max-width: 100%;
+    margin-top: 8px;
   }
   #camera-stream {
     width: 100%;
     height: auto;
-    max-height: 50vh;
+    max-height: 60vh; /* Ajustar altura del stream de cámara */
+  }
+  #capture-btn {
+    margin-top: 16px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
   }
 }

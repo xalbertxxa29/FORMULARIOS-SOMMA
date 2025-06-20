@@ -1,0 +1,415 @@
+/* Variables de color */
+:root {
+  --primary: #2c3e50;
+  --accent:  #3498db;
+  --gray:    #ecf0f1;
+  --text:    #333;
+  --border:  #bdc3c7;
+  --danger: #e74c3c;
+  --success: #27ae60;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  background: var(--gray);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  padding: 10px; /* Reducido para móviles */
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 15px; /* Reducido para móviles */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px; /* Reducido para móviles */
+  color: var(--primary);
+  font-size: 1.5rem; /* Ajustado para móviles */
+}
+
+/* Fieldsets */
+.group {
+  border: 2px solid var(--border);
+  padding: 12px; /* Reducido para móviles */
+  margin-bottom: 20px; /* Reducido para móviles */
+  border-radius: 6px;
+  background: #fffefc;
+}
+.group legend {
+  font-size: 1rem; /* Ajustado para móviles */
+  font-weight: bold;
+  color: var(--primary);
+  padding: 0 8px;
+}
+.group label {
+  display: block;
+  margin: 10px 0 5px; /* Reducido para móviles */
+  font-weight: 600;
+  font-size: 0.95rem; /* Ajustado para móviles */
+}
+.group input[type="text"],
+.group input[type="date"],
+.group input[type="time"],
+.group input[type="number"],
+.group textarea {
+  width: 100%;
+  padding: 8px 10px; /* Reducido para móviles */
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.9rem; /* Ajustado para móviles */
+  transition: border-color .2s, box-shadow .2s;
+}
+.group input:focus,
+.group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
+  outline: none;
+}
+
+/* Para los radios inline de Tipo de Inspección */
+.radios-inline {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    gap: 15px; /* Reducido para móviles */
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+.radios-inline label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: normal;
+    margin: 0;
+    font-size: 0.9rem; /* Ajustado para móviles */
+}
+.radios-inline input[type="radio"] {
+    width: 16px; /* Ajustado para móviles */
+    height: 16px; /* Ajustado para móviles */
+    margin: 0;
+}
+
+/* Nota adicional en fieldsets */
+.group .note {
+    font-size: 0.8rem; /* Ajustado para móviles */
+    color: #555;
+    margin-top: 10px;
+}
+
+/* Sección de Firmas */
+.signature-section {
+  border: 2px solid var(--border);
+  padding: 12px; /* Reducido para móviles */
+  text-align: center;
+  margin-bottom: 20px; /* Reducido para móviles */
+  border-radius: 6px;
+  background: #fffefc;
+}
+.signature-section strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.95rem; /* Ajustado para móviles */
+}
+.signature-section canvas {
+  width: 100%;
+  height: 120px; /* Reducido para móviles */
+  border: 1px solid var(--border);
+  touch-action: none;
+  display: block;
+  margin: 0 auto 10px; /* Reducido para móviles */
+  border-radius: 4px;
+}
+.signature-section button {
+  padding: 6px 12px; /* Reducido para móviles */
+  font-size: 0.9rem; /* Ajustado para móviles */
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #fff;
+  transition: background .2s, transform .1s;
+}
+.signature-section button:hover {
+  background: #2980b9;
+  transform: translateY(-1px);
+}
+.signature-section button:active {
+  transform: translateY(1px);
+}
+
+/* Acciones (Botón Enviar) */
+.actions {
+  text-align: right;
+  margin-top: 15px; /* Reducido para móviles */
+}
+.actions button {
+  padding: 10px 20px; /* Reducido para móviles */
+  font-size: 0.95rem; /* Ajustado para móviles */
+  cursor: pointer;
+  margin-left: 10px; /* Reducido para móviles */
+  border: none;
+  border-radius: 4px;
+  background: var(--primary);
+  color: #fff;
+  transition: background .2s, transform .1s;
+}
+.actions button:hover {
+  background: #212f3d;
+  transform: translateY(-1px);
+}
+.actions button:active {
+  transform: translateY(1px);
+}
+
+/* Adaptable a móvil - Ajustes generales */
+@media (max-width: 600px) {
+  body {
+    padding: 5px;
+  }
+  .container {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  .group {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  .group legend {
+    font-size: 0.95rem;
+  }
+  .group label {
+    font-size: 0.9rem;
+    margin: 8px 0 4px;
+  }
+  .group input[type="text"],
+  .group input[type="date"],
+  .group input[type="time"],
+  .group input[type="number"],
+  .group textarea {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+  }
+  .radios-inline {
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+  }
+  .signature-section {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  .signature-section strong {
+    font-size: 0.9rem;
+  }
+  .signature-section canvas {
+    height: 100px;
+  }
+  .signature-section button {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+  .actions {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .actions button {
+    width: 100%;
+    margin: 5px 0;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}
+
+/* Botón de retorno al menú principal */
+.return-button {
+  background-color: #6c757d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  width: calc(100% - 20px); /* Ajuste para ancho completo en móvil con padding */
+  max-width: 800px; /* Limita el ancho */
+  margin: 10px auto; /* Centrar */
+  display: block; /* Para que margin auto funcione */
+}
+.return-button:hover {
+  background-color: #5a6268;
+}
+
+/* Estilos para el campo de foto */
+.photo-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px dashed var(--border);
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    position: relative; /* Para posicionar el botón de borrar */
+}
+
+.photo-button {
+    background-color: #43a047; /* Verde para el botón de cámara */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    justify-content: center;
+}
+.photo-button:hover {
+    background-color: #388e3c;
+}
+.photo-button i {
+    font-size: 1.1rem;
+}
+
+.photo-preview-box {
+    margin-top: 15px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    max-width: 100%; /* Esta línea ya está bien, asegura que no desborde del contenedor padre */
+    /* Añade o modifica estas propiedades para controlar el tamaño del cuadro de previsualización */
+    width: 200px; /* Ancho fijo para el cuadro de previsualización */
+    height: 150px; /* Alto fijo para el cuadro de previsualización */
+    display: flex; /* Para centrar la imagen dentro del cuadro si es más pequeña */
+    justify-content: center;
+    align-items: center;
+}
+.photo-preview-box img {
+    max-width: 100%; /* Asegura que la imagen no sea más ancha que el cuadro */
+    max-height: 100%; /* Asegura que la imagen no sea más alta que el cuadro */
+    height: auto; /* Mantiene la proporción de la imagen */
+    width: auto; /* Mantiene la proporción de la imagen */
+    display: block;
+}
+
+.delete-photo-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 10;
+    transition: background-color 0.2s ease;
+}
+.delete-photo-button:hover {
+    background-color: #c0392b;
+}
+
+.photo-status-text {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    text-align: center;
+}
+.photo-status-text.required-status {
+    color: var(--danger); /* Rojo para indicar que falta */
+}
+.photo-status-text.optional-status {
+    color: #888; /* Gris para opcional */
+}
+.photo-status-text.taken-status {
+    color: var(--success); /* Verde para indicar que se tomó */
+    font-weight: bold;
+}
+
+/* Estilos para el overlay de la cámara */
+.camera-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Fondo casi negro */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.camera-overlay video {
+    width: 100%;
+    max-height: 80vh; /* Para no desbordar en pantallas pequeñas */
+    object-fit: contain; /* Asegura que el video se ajuste */
+    background-color: black;
+}
+
+.capture-button {
+    background-color: #28a745; /* Un verde vibrante */
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+}
+.capture-button:hover {
+    background-color: #218838;
+}
+.capture-button i {
+    font-size: 1.8rem; /* Icono más grande */
+}
+
+.close-camera-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(255, 255, 255, 0.2); /* Transparente para que se vea el fondo */
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1001; /* Asegura que esté por encima del video */
+}
+.close-camera-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}

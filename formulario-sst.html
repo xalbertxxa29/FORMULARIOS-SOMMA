@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario Registro de Inspecciones Internas de SST</title>
+  <link rel="stylesheet" href="formulario-sst.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Registro de Inspecciones Internas de Seguridad y Salud en el Trabajo</h1>
+    <form id="dataFormSST">
+      <fieldset class="group">
+        <legend>Datos del Documento</legend>
+        <p><strong>Código:</strong> JV-SSM-F-018</p>
+        <p><strong>Versión:</strong> 03</p>
+        <p><strong>Fecha del Formato:</strong> 27/12/2021</p>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Datos Generales de la Inspección</legend>
+        <label>Razón Social / Denominación Social:
+          <input type="text" id="razonSocial" required>
+        </label>
+        <label>RUC:
+          <input type="text" id="ruc" required>
+        </label>
+        <label>Domicilio (Dirección, distrito, departamento, provincia):
+          <textarea id="domicilio" rows="2" required></textarea>
+        </label>
+        <label>Actividad Económica:
+          <input type="text" id="actividadEconomica" required>
+        </label>
+        <label>N° Trabajadores en el Centro Laboral:
+          <input type="number" id="numTrabajadores" min="0" required>
+        </label>
+        <label>Fecha de la Inspección:
+          <input type="date" id="fechaInspeccion" required>
+        </label>
+        <label>Hora de la Inspección:
+          <input type="time" id="horaInspeccion" required>
+        </label>
+        <label>Área Inspeccionada:
+          <input type="text" id="areaInspeccionada" required>
+        </label>
+        <label>Responsable de la Inspección:
+          <input type="text" id="responsableInspeccion" required>
+        </label>
+        <label>Tipo de Inspección (Marcar con X):</label>
+        <div class="radios-inline">
+          <label><input type="radio" name="tipoInspeccion" value="Planeada" required> PLANEADA</label>
+          <label><input type="radio" name="tipoInspeccion" value="No Planeada"> NO PLANEADA</label>
+          <label><input type="radio" name="tipoInspeccion" value="Otro"> OTRO</label>
+        </div>
+        <label>Objetivo de la Inspección Interna:
+          <textarea id="objetivoInspeccion" rows="3" required></textarea>
+        </label>
+
+        <label>Fotografía del Área Inspeccionada: (Obligatorio)</label>
+        <div class="photo-input-container">
+            <button type="button" id="btnFotoArea" class="photo-button"><i class="fas fa-camera"></i> Tomar Foto</button>
+            <div id="previewFotoArea" class="photo-preview-box" style="display: none;">
+                <img id="imgFotoArea" src="" alt="Previsualización de foto de área">
+                <button type="button" class="delete-photo-button" data-type="area"><i class="fas fa-times-circle"></i></button>
+            </div>
+            <p id="fotoAreaStatus" class="photo-status-text required-status">No se ha tomado ninguna foto.</p>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Resultado de la Inspección</legend>
+        <label>Resultado de la Inspección (Indicar nombre completo del personal que participó):
+          <textarea id="resultadoInspeccion" rows="4" required></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Descripción de la Causa Ante Resultados Desfavorables</legend>
+        <label>Descripción:
+          <textarea id="descripcionCausa" rows="4" required></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Conclusiones y Recomendaciones</legend>
+        <label>Conclusiones y Recomendaciones:
+          <textarea id="conclusionesRecomendaciones" rows="4" required></textarea>
+        </label>
+        <p class="note">ADJUNTAR: Lista de verificación de ser el caso. (Opcional)</p>
+        <div class="photo-input-container">
+            <button type="button" id="btnFotoListaVerificacion" class="photo-button"><i class="fas fa-camera"></i> Tomar Foto</button>
+            <div id="previewFotoListaVerificacion" class="photo-preview-box" style="display: none;">
+                <img id="imgFotoListaVerificacion" src="" alt="Previsualización de foto de lista">
+                <button type="button" class="delete-photo-button" data-type="lista"><i class="fas fa-times-circle"></i></button>
+            </div>
+            <p id="fotoListaVerificacionStatus" class="photo-status-text optional-status">No se ha tomado ninguna foto.</p>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Responsable del Registro</legend>
+        <label>Nombre:
+          <input type="text" id="nombreResponsableRegistro" required>
+        </label>
+        <label>Cargo:
+          <input type="text" id="cargoResponsableRegistro" required>
+        </label>
+        <label>Fecha:
+          <input type="date" id="fechaResponsableRegistro" required>
+        </label>
+        <div class="signature-section">
+          <strong>Firma: (Obligatorio)</strong>
+          <canvas id="firmaResponsableRegistro"></canvas><br>
+          <button type="button" id="clearFirmaResponsableRegistro">Borrar Firma</button>
+          <p id="firmaStatus" class="photo-status-text required-status">No se ha firmado.</p>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="button" id="btnEnviarSST">Enviar</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="camera-overlay" class="camera-overlay" style="display: none;">
+    <video id="camera-stream" autoplay playsinline></video>
+    <button type="button" id="capture-photo-button" class="capture-button"><i class="fas fa-circle-dot"></i> Capturar</button>
+    <button type="button" id="close-camera-button" class="close-camera-button"><i class="fas fa-times"></i> Cerrar</button>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="formulario-sst.js"></script>
+
+</body>
+</html>

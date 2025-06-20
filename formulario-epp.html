@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario Inspección EPP</title>
+  <link rel="stylesheet" href="formulario-epp.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Inspección de Estado y Uso de EPP</h1>
+    <form id="eppForm">
+      <div class="document-info">
+        <p><strong>Código:</strong> JV-SSM-F-417</p>
+        <p><strong>Versión:</strong> 01</p>
+        <p><strong>Fecha Documento:</strong> 10/12/2024</p>
+        <p><strong>Página:</strong> 1 de 1</p>
+      </div>
+
+      <fieldset class="group">
+        <legend>Datos Generales de la Inspección</legend>
+        <label for="clienteUnidad">Cliente / Unidad:</label>
+        <input type="text" id="clienteUnidad" required>
+
+        <label for="responsableInspeccion">Responsable de la Inspección:</label>
+        <input type="text" id="responsableInspeccion" required>
+
+        <label for="fechaInspeccion">Fecha de la Inspección:</label>
+        <input type="date" id="fechaInspeccion" required>
+
+        <label for="cargoInspector">Cargo del Inspector:</label>
+        <input type="text" id="cargoInspector" required>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Elementos de Protección Personal (EPP)</legend>
+        <p class="note">Califique en la columna de ESTADO del EPPS con B: Bueno, R: Regular, M: Malo, CD: Cambio por Deterioro, A: No aplica, P: Pendiente de entrega.</p>
+
+        <div id="epp-table-container">
+          <table id="eppTable" class="epp-main-table">
+            <thead>
+              <tr>
+                <th rowspan="2" class="col-n">N°</th>
+                <th rowspan="2" class="col-nombre-trabajador">NOMBRE DEL TRABAJADOR</th>
+                <th colspan="2" class="epp-header-main">Casco</th>
+                <th colspan="2" class="epp-header-main">Chaleco<br>Reflectivo</th>
+                <th colspan="2" class="epp-header-main">Lentes de<br>Seguridad</th>
+                <th colspan="2" class="epp-header-main">Botas de<br>Seguridad</th>
+                <th colspan="2" class="epp-header-main">Protector<br>Auditivo</th>
+                <th colspan="2" class="epp-header-main">Guantes de<br>Seguridad</th>
+                <th rowspan="2" class="col-observaciones">OBSERVACIONES</th>
+                <th rowspan="2" class="col-acciones">Acciones</th>
+              </tr>
+              <tr>
+                <th class="epp-subheader">SI/NO</th><th class="epp-subheader">Estado</th>
+                <th class="epp-subheader">SI/NO</th><th class="epp-subheader">Estado</th>
+                <th class="epp-subheader">SI/NO</th><th class="epp-subheader">Estado</th>
+                <th class="epp-subheader">SI/NO</th><th class="epp-subheader">Estado</th>
+                <th class="epp-subheader">SI/NO</th><th class="epp-subheader">Estado</th>
+                <th class="epp-subheader">SI/NO</th><th class="epp-subheader">Estado</th>
+              </tr>
+            </thead>
+            <tbody id="eppTableBody">
+              </tbody>
+          </table>
+          <button type="button" id="addRowBtn" class="add-row-button"><i class="fas fa-plus"></i> Añadir Trabajador</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Conclusiones y/o Recomendaciones</legend>
+        <textarea id="conclusionesRecomendaciones" rows="5" class="textarea-with-lines" required></textarea>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Responsable del Registro de Inspección</legend>
+        <label for="nombreResponsable">Nombres y Apellidos:</label>
+        <input type="text" id="nombreResponsable" required>
+
+        <label for="fechaRegistro">Fecha:</label>
+        <input type="date" id="fechaRegistro" required>
+
+        <div class="signature-section">
+          <strong>Firma: (Obligatorio)</strong>
+          <canvas id="firmaCanvas"></canvas><br>
+          <button type="button" id="clearFirma">Borrar Firma</button>
+          <p id="firmaStatus" class="photo-status-text required-status">No se ha firmado.</p>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" id="btnEnviar">Enviar Inspección</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="mensaje-flotante" style="display: none;"></div>
+
+  <div id="loading-overlay" style="display: none;">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="formulario-epp.js"></script>
+</body>
+</html>
